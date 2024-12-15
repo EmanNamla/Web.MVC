@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Auth</title>
+
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/web/Account/css/style.css" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <main class="auth-container">
+        @RenderBody()
+    </main>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="~/web/Account/js/site.js"></script>
+
+    <!-- TempData Script -->
+    <script>
+        $(document).ready(function () {
+            // تحقق من TempData واعرض الرسالة
+            if (TempData.SuccessMessage) {
+                toastr.success(TempData.SuccessMessage);
+            }
+            if (TempData.ErrorMessage) {
+                toastr.error(TempData.ErrorMessage);
+            }
+        });
+
+        // TempData Object
+        var TempData = {
+            SuccessMessage: '@TempData["SuccessMessage"]',
+            ErrorMessage: '@TempData["ErrorMessage"]'
+        };
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

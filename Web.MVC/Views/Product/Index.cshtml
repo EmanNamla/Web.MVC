@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProductDto>
+
+@{
+    var isAdmin = User.IsInRole("Admin"); 
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Product List</h2>
+        @if (isAdmin)
+        {
+            <a class="btn btn-success" asp-action="Create" asp-controller="Product" >Add New Product</a>
+        }
+    </div>
+
+    <form method="get" asp-action="Index" asp-controller="Product" class="my-3">
+        <div class="input-group">
+            <input type="text" name="categoryName" class="form-control" placeholder="Search by Category" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Creation Date</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No products found</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product?.Name</td>
+                        <td>@product?.CreationDate.ToShortDateString()</td>
+                        <td>@product?.Price:C</td>
+                        <td>@(product.CategoryName )</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Product", new { id = product?.Id })">Details</a>
+
+                            @if (isAdmin)
+                            {
+                                <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-Id="@product.Id" >Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-Id="@product.Id">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

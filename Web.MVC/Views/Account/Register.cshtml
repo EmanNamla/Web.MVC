@@ -1,0 +1,36 @@
+﻿@model RegisterDto
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<h2>Register</h2>
+<form asp-controller="Account" asp-action="Register" method="post">
+    <div asp-validation-summary="ModelOnly" class="validation-summary"> </div>
+    <label for="userName">Username:</label>
+    <input type="text" asp-for="UserName" placeholder="Username" class="form-control" />
+    <span asp-validation-for="UserName"></span>
+
+    <label for="email">Email:</label>
+    <input type="email" asp-for="Email" placeholder="Email" class="form-control" />
+    <span asp-validation-for="Email"></span>
+
+    <label for="password">Password:</label>
+    <input type="password" asp-for="Password" id="registerPassword" placeholder="Password" class="form-control password-field" />
+    <span asp-validation-for="Password"></span>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" asp-for="ConfirmPassword" id="registerConfirmPassword" placeholder="Confirm Password" class="form-control password-field" />
+    <span asp-validation-for="ConfirmPassword"></span>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" asp-for="PhoneNumber" placeholder="Phone Number" class="form-control" />
+    <span asp-validation-for="PhoneNumber"></span>
+
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input type="date" asp-for="DateOfBirth" class="form-control" />
+    <span asp-validation-for="DateOfBirth"></span>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+<p>Already have an account? <a asp-controller="Account" asp-action="Login">Login</a></p>

@@ -1,0 +1,21 @@
+﻿@model ProductDto
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Delete Product</h2>
+        <a class="btn btn-secondary" asp-action="Index" asp-controller="Product">Back to List</a>
+    </div>
+
+    <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post" class="mt-4">
+        <partial name="_PartialViews/_DetailsAndDeletePartial" />
+
+        <div class="text-danger mb-3">
+            <p>Are you sure you want to delete this product?</p>
+        </div>
+
+        <input type="hidden" name="ProductId" value="@Model.Id" />
+
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
