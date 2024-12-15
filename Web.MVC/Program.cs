@@ -29,12 +29,12 @@ internal class Program
         app.UseStaticFiles();
 
         app.UseRouting();
-       // app.UseAuthentication();
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Product}/{action=Index}/{id?}");
+            pattern: "{controller=Account}/{action=Register}/{id?}");
 
         app.Run();
     }
